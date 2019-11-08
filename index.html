@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Guess The Number</title>
+		<link rel="stylesheet" href="./guess.css">
+	</head>
+	<body>
+		
+		<div class="Heading">
+			<h1>GUESS THE DANGER NUMBER</h1>
+		</div>
+		
+		<div class="inputArea">
+			<input id="inputbox" title="guess here" type="text" placeholder="guess"></input>
+			<button id="angerbutton">CHECK</button>
+		</div>
+		<div class="guessNo">
+			<p id="guessno"></p>
+			<p id="guessLeft"></p>
+		</div>
+		<div class="judgement">
+			<p id="judge"></p>
+		</div>
+	</body>
+</html>
+
+<script>
+ let guessNumber = 0;
+ let MaxGuesses = 15;
+ document.getElementById('angerbutton').addEventListener('click',braineater);
+ let randomnumero = Math.floor(Math.random()*100);
+
+
+ function braineater()
+ {
+	guessNumber++;
+
+ 	let enteredNumber = Number(document.getElementById('inputbox').value);
+	if(guessNumber != 0)
+	{
+		document.getElementById('guessno').innerHTML = 'GUESS NUMBER:' + String(guessNumber);
+		document.getElementById('guessLeft').innerHTML = 'GUESSES LEFT:'+String(MaxGuesses-guessNumber);
+	}
+	if(enteredNumber === randomnumero)
+	{
+	   para = document.getElementById('judge');
+		para.style.color = 'green';
+		para.innerHTML = '!YOU ARE REAL DANGER!';
+		stop();
+	}
+	else if(guessNumber == MaxGuesses)
+	{
+		para = document.getElementById('judge');
+		para.style.color = 'red';
+		para.innerHTML = 'YOU TRIES BUT FAILS!';
+		stop();
+	}
+	else if(enteredNumber < randomnumero)
+	{
+		
+		para = document.getElementById('judge');
+		para.style.color = 'red';
+		para.innerHTML = 'Too Less';
+	}
+	else
+	{
+		
+	   para = document.getElementById('judge');
+		para.style.color = 'red';
+		para.innerHTML = 'too High';
+	}
+
+ }
+
+ function stop()
+ {
+	let btn = document.createElement('button');
+	btn.id = 'resetbutton';
+	btn.addEventListener('click', reset);
+	btn.innerHTML = 'I\'m Reset';
+	para.appendChild(btn);
+ 	document.getElementById('inputbox').disabled = true;
+	document.getElementById('angerbutton').disabled = true; 
+ }
+
+ function reset()
+ {
+	document.getElementById('guessno').innerHTML = '';
+	document.getElementById('guessLeft').innerHTML = '';
+ 	randomnumero = Math.floor(Math.random()*100);
+	guessNumber = 0;
+	document.getElementById('judge').innerHTML = "";
+	document.getElementById('inputbox').disabled = false;
+	document.getElementById('angerbutton').disabled = false;
+	document.getElementById('para').removeChild(document.getElementById('resetbutton'));
+ }
+</script>

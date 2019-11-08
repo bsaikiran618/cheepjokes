@@ -1,0 +1,24 @@
+.Heading
+{
+
+	text-align:center;
+	font-family: sans-serif;
+	color: orange;
+}
+.inputArea
+{
+	text-align:center;
+	font-size: 80%;
+}
+.guessNo
+{
+	color: navy;
+	text-align: center;
+}
+.judgement
+{
+	text-align:center;
+	font-size:50px;
+	color: red;
+}
+
