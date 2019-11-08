@@ -21,20 +21,47 @@
 		<div class="judgement">
 			<p id="judge"></p>
 		</div>
+	
+	
+	 <p id="mypara" style="text-align:center">HELLO</p>
+	 <p style="text-align:center font-size:50px">WORLD</p>
 	</body>
 </html>
 
 <script>
+	let currentSize = 25;
+	let currentState = 'notYetReachedMax';
+	let glitchyness = 25;
+	window.setInterval(changeSize,glitchyness);
+	function changeSize()
+	{
+		if(currentSize == 75)
+		{
+			currentState = 'reachedMax';
+		}
+		if(currentSize == 25)
+		{
+			currentState = 'notYetReachedMax';
+		}
+	   if(currentState === 'notYetReachedMax')
+		{
+			document.getElementById('mypara').style.fontSize = String(currentSize) + 'px';
+			currentSize = currentSize + 1;
+		}
+		else
+		{
+			document.getElementById('mypara').style.fontSize = String(currentSize) + 'px';
+			currentSize = currentSize - 1;
+		}
+	}
+	
  let guessNumber = 0;
  let MaxGuesses = 15;
  document.getElementById('angerbutton').addEventListener('click',braineater);
  let randomnumero = Math.floor(Math.random()*100);
-
-
  function braineater()
  {
 	guessNumber++;
-
  	let enteredNumber = Number(document.getElementById('inputbox').value);
 	if(guessNumber != 0)
 	{
@@ -69,9 +96,7 @@
 		para.style.color = 'red';
 		para.innerHTML = 'too High';
 	}
-
  }
-
  function stop()
  {
 	let btn = document.createElement('button');
@@ -82,7 +107,6 @@
  	document.getElementById('inputbox').disabled = true;
 	document.getElementById('angerbutton').disabled = true; 
  }
-
  function reset()
  {
 	document.getElementById('guessno').innerHTML = '';
